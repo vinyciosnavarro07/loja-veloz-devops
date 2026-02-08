@@ -26,7 +26,7 @@ jobs:
       - name: Build & Push Orders
         uses: docker/build-push-action@v5
         with:
-          context: ./orders
+          context: ./services/orders
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/orders:latest
@@ -36,7 +36,7 @@ jobs:
       - name: Build & Push Inventory
         uses: docker/build-push-action@v5
         with:
-          context: ./inventory
+          context: ./services/inventory
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/inventory:latest
@@ -46,7 +46,7 @@ jobs:
       - name: Build & Push Payments
         uses: docker/build-push-action@v5
         with:
-          context: ./payments
+          context: ./services/payments
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/payments:latest

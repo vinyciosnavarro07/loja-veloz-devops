@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orders-config
+data:
+  SERVICE_NAME: orders
+  LOG_LEVEL: info

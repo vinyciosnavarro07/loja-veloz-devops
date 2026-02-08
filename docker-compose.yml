@@ -1,0 +1,65 @@
+
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_DB: pedidos
+      POSTGRES_USER: veloz
+      POSTGRES_PASSWORD: veloz123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  orders:
+    build:
+      context: ./services/orders
+    container_name: orders
+    env_file:
+      - .env.example
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  inventory:
+    build:
+      context: ./services/inventory
+    container_name: inventory
+    env_file:
+      - .env.example
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  payments:
+    build:
+      context: ./services/payments
+    container_name: payments
+    env_file:
+      - .env.example
+    networks:
+      - backend
+
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - orders
+      - inventory
+      - payments
+    networks:
+      - backend
+
+volumes:
+  pgdata:
+
+networks:
+  backend:
+    driver: bridge

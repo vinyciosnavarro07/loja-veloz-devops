@@ -161,3 +161,5 @@ O projeto conta com um pipeline automatizado que executa:
 ## 📄 Observações Finais
 
 Este projeto foi desenvolvido com foco em boas práticas de engenharia, organização e clareza, priorizando entendimento conceitual e aplicação prática dos principais pilares de DevOps e Cloud Native.
+
+### link para o video no youtube: https://youtu.be/t2MqYju9Gss

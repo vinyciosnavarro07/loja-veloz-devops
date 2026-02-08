@@ -4,9 +4,17 @@ metadata:
   name: inventory
 spec:
   replicas: 2
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
   selector:
     matchLabels:
       app: inventory
+
   template:
     metadata:
       labels:
@@ -22,15 +30,17 @@ spec:
                 name: inventory-config
             - secretRef:
                 name: inventory-secret
+
           readinessProbe:
             httpGet:
-              path: /inventory
+              path: /health
               port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10
+
           livenessProbe:
             httpGet:
-              path: /inventory
+              path: /health
               port: 5000
             initialDelaySeconds: 15
             periodSeconds: 20

@@ -4,6 +4,13 @@ metadata:
   name: payments
 spec:
   replicas: 2
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
   selector:
     matchLabels:
       app: payments
@@ -24,13 +31,13 @@ spec:
                 name: payments-secret
           readinessProbe:
             httpGet:
-              path: /payments
+              path: /health
               port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /payments
+              path: /health
               port: 5000
             initialDelaySeconds: 15
             periodSeconds: 20

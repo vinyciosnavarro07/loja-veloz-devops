@@ -14,6 +14,7 @@ services:
       - backend
 
   orders:
+    image: vinyciosnavarro/orders:1.0.0
     build:
       context: ./services/orders
     container_name: orders
@@ -25,6 +26,7 @@ services:
       - backend
 
   inventory:
+    image: vinyciosnavarro/inventory:1.0.0
     build:
       context: ./services/inventory
     container_name: inventory
@@ -36,6 +38,7 @@ services:
       - backend
 
   payments:
+    image: vinyciosnavarro/payments:1.0.0
     build:
       context: ./services/payments
     container_name: payments
@@ -45,6 +48,7 @@ services:
       - backend
 
   api-gateway:
+    image: vinyciosnavarro/api-gateway:1.0.0
     build:
       context: ./services/api-gateway
     container_name: api-gateway
